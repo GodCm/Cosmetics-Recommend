@@ -1,0 +1,7 @@
+{
+  "img": ".//div[@class='p-img']/a/img/@href",
+  "price": ".//div[@class='p-price']//i/text()",
+  "name": ".//div[@class='p-name p-name-type-2']//em/text()",
+  "commit_counts": ".//div[@class='p-commit']//a/text()",
+  "shop": ".//div[@class='p-shop']/span/a/text()",
+}
