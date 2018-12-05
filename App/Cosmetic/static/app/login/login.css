@@ -1,0 +1,15 @@
+.form-info {
+border: 1px solid orange;
+margin: 100px auto;
+width: 30%;
+padding: 50px;
+}
+
+.form-info h2 {
+font-size: 2rem;
+margin-bottom: 20px;
+}
+
+.form-info .submit {
+text-align: center;
+}
