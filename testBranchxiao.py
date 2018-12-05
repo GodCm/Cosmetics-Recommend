@@ -7,3 +7,5 @@ def add(num1,num2):
 
 add(2,5)
 print("test git")
+
+print("weibo")
