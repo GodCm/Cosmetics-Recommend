@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/app/goods/goods.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="/static/app/goods/goods.js"></script>
+</head>
+
+<body>
+<header>
+    <nav class="background-dark">
+        <div class="line">
+            <div id="d1" class="s-12 l-3">
+                <div class="fullwidth">
+                    <a href="index.html" class="logo"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                </div>
+            </div>
+
+            <div id="d2" class="top-nav s-12 m-12 l-9">
+                <a class="nav-text"></a>
+                <ul class="right chevron">
+                    <li><a href="{% url 'app:index' %}">首页</a></li>
+                    <li><a href="{% url 'app:goods_index' %}">商品</a></li>
+                    <li><a href="#">商品对比</a></li>
+                    {% if is_login %}
+                    <li>
+                        <img width="40px" height="40px" class="img-circle" alt="" src="{{ icon }}"/>
+                    </li>
+                    <li><a href="#"><span>{{ username }}</span></a></li>
+                    <li><a href="{% url 'app:user_info' %}">修改信息</a></li>
+                    <li><a href="{% url 'app:loginout' %}">退出</a></li>
+                    {% else %}
+                    <li><a href="{% url 'app:login' %}">登录</a></li>
+                    <li><a href="{% url 'app:register' %}">注册</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<content>
+    <div class="sub-cate">
+        <div class=" top-nav rsidebar span_1_of_left">
+            <h3 class="cate">类别</h3>
+            <ul class="menu">
+                <li class="item1">
+                    <a href="#">
+                        口红
+                        <img class="arrow-img" src="{% static 'img/arrow1.png' %}" alt=""/>
+                    </a>
+                    <ul class="cute">
+                        <li class="subitem1"><a href="{% url 'app:goods_select' %}">纪梵希 </a></li>
+                        <li class="subitem2"><a href="product.html">YSL </a></li>
+                        <li class="subitem3"><a href="product.html">Diro </a></li>
+                    </ul>
+                </li>
+                <li class="item4">
+                    <a href="#">
+                        面膜
+                        <img class="arrow-img img-left-arrow" src="{% static 'img/arrow1.png' %}" alt=""/>
+                    </a>
+                    <ul class="cute">
+                        <li class="subitem1"><a href="product.html">自然堂 </a></li>
+                        <li class="subitem2"><a href="product.html">一叶子 </a></li>
+                        <li class="subitem3"><a href="product.html">欧莱雅 </a></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="kid-menu">
+                        <li><a href="product.html">化妆水</a></li>
+                        <li><a href="product.html">BB霜</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="goods">
+        <div class="goods_detail">
+            <img src="/static/img/slide1.jpg" alt="">
+            <br>
+            <div class="describe">
+                <span style="color:red;">￥89.0</span>
+                <br>
+                <span>纪梵希&nbsp;&nbsp;&nbsp;</span>
+                <span>销量：30万+</span>
+                <br>
+                <span>源金美美妆专营店</span>
+            </div>
+        </div>
+
+        <div class="goods_detail">
+            <img src="/static/img/slide1.jpg" alt="">
+            <br>
+            <div class="describe">
+                <span style="color:red;"></span>
+                <br>
+                <span>纪梵希&nbsp;&nbsp;&nbsp;</span>
+                <span>销量：30万+</span>
+                <br>
+                <span>源金美美妆专营店</span>
+            </div>
+        </div>
+
+    </div>
+</content>
+</body>
+
+</html>

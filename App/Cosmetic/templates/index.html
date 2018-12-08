@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content1 %}
+    <div class="top-nav s-12 m-12 l-9">
+        <a class="nav-text"></a>
+        <ul class="right chevron">
+            <li><a href="#">首页</a></li>
+            <li><a href="{% url 'app:goods_index' %}">商品</a></li>
+            <li><a href="#">商品对比</a></li>
+            {% if is_login %}
+                <li>
+                    <img width="40px" height="40px" class="img-circle" alt="" src="{{ icon }}"/>
+                </li>
+                <li><a href="#"><span>{{ username }}</span></a></li>
+                <li><a href="{% url 'app:user_info' %}">修改信息</a></li>
+                <li><a href="{% url 'app:loginout' %}">退出</a></li>
+            {% else %}
+                <li><a href="{% url 'app:login' %}">登录</a></li>
+                <li><a href="{% url 'app:register' %}">注册</a></li>
+            {% endif %}
+        </ul>
+
+    </div>
+
+{% endblock %}
+{% block content2 %}
+    <div class="carousel-fade-transition owl-carousel carousel-main">
+        <!-- slide 1 -->
+        <div class="item">
+            <!-- slideshow photo -->
+            <div class="image-box">
+                <div class="image">
+                    <img src="{% static 'img/slide1.jpg'%}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
