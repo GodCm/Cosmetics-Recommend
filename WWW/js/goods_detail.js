@@ -120,5 +120,61 @@ $(function() {
 			}
 		});
 	});
+
+
+	$('#subitem3').click(function() {
+		$.ajax({
+			type: "get",
+			url: "http://localhost/app/classify_perfume/",
+			success: function(data) {
+				//console.log(data)
+				var aData = data.perfume;
+				$('.goods').empty();
+				for(var i = 0; i < aData.length; i++) {
+					var $div = $(
+					'<div class="goods_detail">' +
+					'<img class="imgone" src="' + aData[i].goods_img + '" alt="">' +					'<br>' +
+					'<div class="describe">' +
+					'<span class="price">￥' + aData[i].goods_price + '</span>' +
+					'<br>' +
+					'<span class="goodsname">' + aData[i].goods_name + '&nbsp;&nbsp;&nbsp;</span>' +
+					'<span class="goodssale">销量：<span>' + aData[i].sales +'</span></span>' +
+				        '<br>' +
+					'<span class="shop">' + aData[i].shops + '</span>' +
+					'</div>' +
+					'</div>')
+				$div.appendTo($('.goods'));
+				}			
+			}
+		});
+	});
+	
+
+	$('#subitem4').click(function() {
+		$.ajax({
+			type: "get",
+			url: "http://localhost/app/classify_bbcream/",
+			success: function(data) {
+				//console.log(data)
+				var aData = data.bbcream;
+				$('.goods').empty();
+				for(var i = 0; i < aData.length; i++) {
+					var $div = $(
+					'<div class="goods_detail">' +
+					'<img class="imgone" src="' + aData[i].goods_img + '" alt="">' +					'<br>' +
+					'<div class="describe">' +
+					'<span class="price">￥' + aData[i].goods_price + '</span>' +
+					'<br>' +
+					'<span class="goodsname">' + aData[i].goods_name + '&nbsp;&nbsp;&nbsp;</span>' +
+					'<span class="goodssale">销量：<span>' + aData[i].sales +'</span></span>' +
+				        '<br>' +
+					'<span class="shop">' + aData[i].shops + '</span>' +
+					'</div>' +
+					'</div>')
+				$div.appendTo($('.goods'));
+				}			
+			}
+		});
+	});
 	
 })
