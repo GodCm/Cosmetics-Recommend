@@ -76,3 +76,4 @@ CREATE TABLE "users" (
 );
 
 PRAGMA foreign_keys = true;
+

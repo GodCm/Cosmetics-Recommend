@@ -39,6 +39,33 @@ class Mask(models.Model):
         managed = False
         db_table = 'mask'
 
+class Perfume(models.Model):
+    id = models.IntegerField(primary_key=True)
+    goods_name = models.TextField(blank=True, null=True)
+    goods_price = models.TextField(blank=True, null=True)
+    goods_img = models.TextField(blank=True, null=True)
+    sales = models.TextField(blank=True, null=True)
+    shops = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'perfume'
+
+
+class BBCream(models.Model):
+    id = models.IntegerField(primary_key=True)
+    goods_name = models.TextField(blank=True, null=True)
+    goods_price = models.TextField(blank=True, null=True)
+    goods_img = models.TextField(blank=True, null=True)
+    sales = models.TextField(blank=True, null=True)
+    shops = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'BBCream'
+
+
+
 
 class UserModel(models.Model):
     id = models.IntegerField(primary_key=True)

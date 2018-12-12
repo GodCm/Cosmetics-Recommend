@@ -4,7 +4,7 @@ import sqlite3
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from app.models import UserModel, Mask, Lipstick
+from app.models import UserModel, Mask, Lipstick, Perfume, BBCream
 
 
 # 首页 用户信息加载返回
@@ -49,7 +49,7 @@ def register(request):
                 'code': -1,
                 'msg': "用户名已存在",
                 'wait': 2,
-                'url': "login"
+                'url': "/"
             })
         else:
             user.username = username
@@ -83,16 +83,16 @@ def login(request):
             else:
                 return render(request, "notice.html", context={
                     'code': -1,
-                    'msg': "账户密码不符合",
+                    'msg': "登录信息错误",
                     'wait': 2,
-                    'url': "login"
+                    'url': "/"
                 })
         else:
             return render(request, "notice.html", context={
                 'code': -1,
-                'msg': "用户用户不存在",
+                'msg': "登录信息错误",
                 'wait': 2,
-                'url': "login"
+                'url': "/"
             })
 
     return HttpResponseRedirect("/")
@@ -111,22 +111,18 @@ def change_info(request):
     }
     if request.method == 'POST':
 
-        userid = request.session.get('user_id')
-        users = UserModel.objects.get(pk=userid)
+        userid = request.session.get("user_id")
+        users = UserModel.objects.filter(pk=userid)
 
         if users.exists():
             user = users.first()
-
             oldpassword = request.POST.get("oldpassword")
-
             password_new = request.POST.get("newpassword")
-
             email = request.POST.get("email")
-            icon = request.POST.get("icon")
+            icon = request.FILES.get("icon")
 
             if user.password == make_pwd(oldpassword):
-
-                user.password = password_new
+                user.password = make_pwd(password_new)
                 user.email = email
                 user.icon = icon
                 user.save()
@@ -135,22 +131,22 @@ def change_info(request):
                 data["status"] = "200"
                 data["msg"] = "账户信息修改成功"
                 data["is_login"] = True
-                return JsonResponse(data)
-                # return HttpResponseRedirect("/")
+                # return JsonResponse(data)
+                return HttpResponseRedirect("/")
             else:
                 return render(request, "notice.html", context={
                     'code': -1,
                     'msg': "旧密码输入有误,请重新输入",
                     'wait': 2,
-                    'url': "login"
+                    'url': "/"
                 })
-
+    #
         else:
             return render(request, "notice.html", context={
                 'code': -1,
                 'msg': "在登录状态下才能修改个人信息",
                 'wait': 2,
-                'url': "login"
+                'url': "/"
             })
     return HttpResponseRedirect("/")
 
@@ -185,5 +181,22 @@ def classify_lipsticks(request):
     name_object = Lipstick.objects.filter(goods_name__contains=goods_name)
     data = {
         "lipsticks": list(name_object.values())
+    }
+    return JsonResponse(data)
+
+
+# 展示香水
+def classify_perfume(request):
+    perfume = Perfume.objects.all()
+    data = {
+        "perfume":list(perfume.values())
+    }
+    return JsonResponse(data)
+
+
+def classify_bbcream(request):
+    bbcream = BBCream.objects.all()
+    data = {
+        "bbcream": list(bbcream.values())
     }
     return JsonResponse(data)
